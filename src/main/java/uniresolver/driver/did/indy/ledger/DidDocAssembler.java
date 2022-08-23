@@ -53,10 +53,10 @@ public class DidDocAssembler {
 
         Map<String, Object> didDocumentContent;
 
-        if (attribTransactionData == null || attribTransactionData.getRawValue() == null) {
-            didDocumentContent = Collections.emptyMap();
-        } else {
+        if (attribTransactionData != null && !"diddocContent".equals(attribTransactionData.getRawKey()) && attribTransactionData.getRawValue() != null) {
             didDocumentContent = attribTransactionData.getRawValue();
+        } else {
+            didDocumentContent = Collections.emptyMap();
         }
         if (log.isDebugEnabled()) log.debug("DID document content for " + did + ": " + didDocumentContent);
 
