@@ -70,7 +70,12 @@ public class DidDocAssembler {
                 .build();
 
         for (Map.Entry<String, Object> didDocumentContentEntry : didDocumentContent.entrySet()) {
-            JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentEntry.getKey(), didDocumentContentEntry.getValue());
+            String didDocumentContentKey = didDocumentContentEntry.getKey();
+            Object didDocumentContentValue = didDocumentContentEntry.getValue();
+            if ("@context".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
+            if ("verificationMethod".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
+            if ("authentication".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
+            didDocument.getJsonObject().put(didDocumentContentKey, didDocumentContentValue);
         }
 
         // done
