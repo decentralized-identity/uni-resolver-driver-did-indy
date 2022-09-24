@@ -187,7 +187,7 @@ public class DidIndyDriver implements Driver {
 			try {
 				synchronized (indyConnection) {
 					Pool.setProtocolVersion(indyConnection.getPoolVersion());
-					String getAttrRequest = Ledger.buildGetAttribRequest(indyConnection.getSubmitterDid(), indyDid, "endpoint", null, null).get();
+					String getAttrRequest = Ledger.buildGetAttribRequest(indyConnection.getSubmitterDid(), indyDid, "diddocContent", null, null).get();
 					getAttrResponse = Ledger.signAndSubmitRequest(indyConnection.getPool(), indyConnection.getWallet(), indyConnection.getSubmitterDid(), getAttrRequest).get();
 				}
 			} catch (IndyException | InterruptedException | ExecutionException ex) {
