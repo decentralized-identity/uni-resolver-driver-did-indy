@@ -72,11 +72,16 @@ public class DidDocAssembler {
         for (Map.Entry<String, Object> didDocumentContentEntry : didDocumentContent.entrySet()) {
             String didDocumentContentKey = didDocumentContentEntry.getKey();
             Object didDocumentContentValue = didDocumentContentEntry.getValue();
-            if ("@context".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
-            if ("verificationMethod".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
-            if ("authentication".equals(didDocumentContentKey)) JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
-            didDocument.getJsonObject().put(didDocumentContentKey, didDocumentContentValue);
+            if (List.of("@context", "verificationMethod", "verificationMethod").contains(didDocumentContentKey)){
+                if (log.isDebugEnabled()) log.debug("Merging DID document content: " + didDocumentContentKey + " -> " + didDocumentContentValue);
+                JsonLDUtils.jsonLdAdd(didDocument, didDocumentContentKey, didDocumentContentValue);
+            } else {
+                if (log.isDebugEnabled()) log.debug("Adding DID document content: " + didDocumentContentKey + " -> " + didDocumentContentValue);
+                didDocument.getJsonObject().put(didDocumentContentKey, didDocumentContentValue);
+            }
         }
+
+        if (log.isDebugEnabled()) log.debug("Assembled DID document: " + didDocument);
 
         // done
 
