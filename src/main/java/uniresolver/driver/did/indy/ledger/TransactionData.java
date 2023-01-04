@@ -92,7 +92,7 @@ public class TransactionData {
         return new TransactionData(getNymResponse, getNymResponseMap, found, reqId, seqNo, type, dest, txnTime, verkey, null, null);
     }
 
-    private static TransactionData fromGetAttrResponse(String getAttrRespnse, Map getAttrResponseMap) throws JsonProcessingException {
+    private static TransactionData fromGetAttrResponse(String getAttrResponse, Map getAttrResponseMap) throws JsonProcessingException {
 
         Object jsonGetAttrResult = getAttrResponseMap == null ? null : getAttrResponseMap.get("result");
         Object jsonGetAttrResultDataString = !(jsonGetAttrResult instanceof Map) ? null : ((Map) jsonGetAttrResult).get("data");
@@ -116,7 +116,7 @@ public class TransactionData {
         String rawKey = jsonGetAttrResultRawKey instanceof String ? (String) jsonGetAttrResultRawKey : null;
         Map<String, Object> rawValue = jsonGetAttrResultDataRawValue instanceof Map ? (Map<String, Object>) jsonGetAttrResultDataRawValue : null;
 
-        return new TransactionData(getAttrRespnse, getAttrResponseMap, found, reqId, seqNo, type, dest, txnTime, null, rawKey, rawValue);
+        return new TransactionData(getAttrResponse, getAttrResponseMap, found, reqId, seqNo, type, dest, txnTime, null, rawKey, rawValue);
   }
 
     public static TransactionData fromGetTxnResponse(String getTxnResponse) {
