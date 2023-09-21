@@ -36,7 +36,7 @@ USER jetty
 # variables
 
 ENV uniresolver_driver_did_indy_libIndyPath=
-ENV uniresolver_driver_did_indy_poolConfigs=sovrin;./sovrin/sovrin.txn;sovrin:staging;./sovrin/sovrin-staging.txn;sovrin:builder;./sovrin/sovrin-builder.txn;danube;./sovrin/danube.txn;idunion;./sovrin/idunion.txn;idunion:test;./sovrin/idunion-test.txn;indicio;./sovrin/indicio.txn;indicio:test;./sovrin/indicio-test.txn;indicio:demo;./sovrin/indicio-demo.txn;bbu;./sovrin/bbu.txn;nxd;./sovrin/nxd.txn:findy:test;./sovrin/findy-test.txn
+ENV uniresolver_driver_did_indy_poolConfigs=sovrin;./sovrin/sovrin.txn;sovrin:staging;./sovrin/sovrin-staging.txn;sovrin:builder;./sovrin/sovrin-builder.txn;danube;./sovrin/danube.txn;idunion;./sovrin/idunion.txn;idunion:test;./sovrin/idunion-test.txn;indicio;./sovrin/indicio.txn;indicio:test;./sovrin/indicio-test.txn;indicio:demo;./sovrin/indicio-demo.txn;bbu;./sovrin/bbu.txn;nxd;./sovrin/nxd.txn;findy:test;./sovrin/findy-test.txn
 ENV uniresolver_driver_did_indy_poolVersions=sovrin;2;sovrin:staging;2;sovrin:builder;2;danube;2;idunion;2;idunion:test;2;indicio;2;indicio:test;2;indicio:demo;2;bbu;2;nxd;2;findy:test;2
 ENV uniresolver_driver_did_indy_walletNames=sovrin;w1;sovrin:staging;w2;sovrin:builder;w3;danube;w4;idunion;w5;idunion:test;w6;indicio;w7;indicio:test;w8;indicio:demo;w9;bbu;w10;nxd;w11;findy:test;w12
 ENV uniresolver_driver_did_indy_submitterDidSeeds=sovrin;_;sovrin:staging;_;sovrin:builder;_;danube;_;idunion;_;idunion:test;_;indicio;_;indicio:test;_;indicio:demo;_;bbu;_;nxd;_;findy;_
