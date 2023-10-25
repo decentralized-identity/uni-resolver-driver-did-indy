@@ -42,7 +42,7 @@ public class DidDocAssembler {
 
         VerificationMethod verificationMethodKey = VerificationMethod.builder()
                 .id(URI.create(did + "#verkey"))
-                .controller(did.toString())
+                .controller(URI.create(did.toString()))
                 .types(Arrays.asList(DIDDOCUMENT_VERIFICATIONMETHOD_KEY_TYPES))
                 .publicKeyBase58(ed25519Key)
                 .build();
