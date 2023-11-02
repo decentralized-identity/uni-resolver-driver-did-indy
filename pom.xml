@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>uni-resolver-driver-did-indy</artifactId>
@@ -14,14 +14,17 @@
 		<version>0.15.0</version>
 	</parent>
 
+	<scm>
+		<url>https://github.com/decentralized-identity/uni-resolver-driver-did-indy</url>
+		<connection>scm:git:git://github.com/decentralized-identity/uni-resolver-driver-did-indy.git</connection>
+		<developerConnection>scm:git:git@github.com:decentralized-identity/uni-resolver-driver-did-indy.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<repositories>
 		<repository>
-			<id>danubetech-maven-snapshots</id>
-			<url>https://repo.danubetech.com/repository/maven-snapshots/</url>
-		</repository>
-		<repository>
-			<id>danubetech-maven-releases</id>
-			<url>https://repo.danubetech.com/repository/maven-releases/</url>
+			<id>danubetech-maven-public</id>
+			<url>https://repo.danubetech.com/repository/maven-public/</url>
 		</repository>
 		<repository>
 			<id>sovrin</id>
@@ -44,6 +47,15 @@
 	</properties>
 
 	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<packaging.type>jar</packaging.type>
+			</properties>
+		</profile>
 		<profile>
 			<id>ci</id>
 			<properties><packaging.type>jar</packaging.type></properties>
@@ -74,15 +86,6 @@
 			</build>
 		</profile>
 		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<packaging.type>jar</packaging.type>
-			</properties>
-		</profile>
-		<profile>
 			<id>war</id>
 			<properties>
 				<packaging.type>war</packaging.type>
@@ -102,11 +105,10 @@
 								${basedir}/src/test/resources/jetty.xml
 							</jettyXmls>
 							<useTestScope>true</useTestScope>
+							<httpConnector>
+								<port>8080</port>
+							</httpConnector>
 							<systemProperties>
-								<systemProperty>
-									<name>jetty.port</name>
-									<value>8080</value>
-								</systemProperty>
 								<systemProperty>
 									<name>slf4j</name>
 									<value>true</value>
