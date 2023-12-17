@@ -19,8 +19,8 @@ did:indy:sovrin:staging:WRfXPg8dantKVubE3HX8pw
 ## Build and Run (Docker)
 
 ```
-docker build -f ./docker/Dockerfile . -t universalresolver/danubetech-driver-did-indy
-docker run -p 8080:8080 universalresolver/danubetech-driver-did-indy
+docker build -f ./docker/Dockerfile . -t universalresolver/driver-did-indy
+docker run -p 8080:8080 universalresolver/driver-did-indy
 curl -X GET http://localhost:8080/1.0/identifiers/did:indy:sovrin:WRfXPg8dantKVubE3HX8pw
 ```
 
