@@ -35,6 +35,7 @@ Maven build:
 The driver recognizes the following environment variables:
 
 * `uniresolver_driver_did_indy_libIndyPath`: The path to the Indy SDK library.
+* `uniresolver_driver_did_indy_openParallel`: Whether to open Indy pools in parallel threads. This speeds up startup, but may consume more memory.
 * `uniresolver_driver_did_indy_poolConfigs`: A semi-colon-separated list of Indy network names and pool configuration files.
 * `uniresolver_driver_did_indy_poolVersions`: A semi-colon-separated list of Indy network names and pool protocol versions.
 * `uniresolver_driver_did_indy_walletNames`: A semi-colon-separated list of Indy network names and wallet names.
