@@ -36,12 +36,26 @@ public class DidIndyDriver implements Driver {
 	private boolean openParallel;
 	private IndyConnector indyConnector;
 
-	public DidIndyDriver(Map<String, Object> properties) {
+	public DidIndyDriver(Map<String, Object> properties) throws IndyConnectionException{
 
 		this.setProperties(properties);
+
+		// init
+
+		if (!this.getLibIndyInitializer().isInitialized()) {
+			this.getLibIndyInitializer().initializeLibIndy();
+			if (log.isInfoEnabled()) log.info("Successfully initialized libindy.");
+		}
+
+		// open indy connections
+
+		if (! this.getIndyConnector().isOpened()) {
+			this.getIndyConnector().openIndyConnections(true, false, this.getOpenParallel());
+			if (log.isInfoEnabled()) log.info("Successfully opened Indy connections.");
+		}
 	}
 
-	public DidIndyDriver() {
+	public DidIndyDriver() throws IndyConnectionException {
 
 		this(getPropertiesFromEnvironment());
 	}
@@ -109,22 +123,10 @@ public class DidIndyDriver implements Driver {
 	@Override
 	public ResolveDataModelResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
 
-		// init
-
-		if (!this.getLibIndyInitializer().isInitialized()) {
-			this.getLibIndyInitializer().initializeLibIndy();
-			if (log.isInfoEnabled()) log.info("Successfully initialized libindy.");
-		}
-
 		// open indy connections
 
 		if (! this.getIndyConnector().isOpened()) {
-			try {
-				this.getIndyConnector().openIndyConnections(true, false, this.getOpenParallel());
-				if (log.isInfoEnabled()) log.info("Successfully opened Indy connections.");
-			} catch (IndyConnectionException ex) {
-				throw new ResolutionException("Cannot open Indy connections: " + ex.getMessage(), ex);
-			}
+			throw new ResolutionException("Cannot open Indy connections: Indy Connections are not opened");
 		}
 
 		// parse identifier
