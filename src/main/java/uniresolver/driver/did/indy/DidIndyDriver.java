@@ -28,7 +28,7 @@ public class DidIndyDriver implements Driver {
 
 	private static final Logger log = LoggerFactory.getLogger(DidIndyDriver.class);
 
-	public static final Pattern DID_SOV_PATTERN = Pattern.compile("^did:indy:(?:(\\w[-\\w]*(?::\\w[-\\w]*)*):)?([1-9A-HJ-NP-Za-km-z]{21,22})$");
+	public static final Pattern DID_INDY_PATTERN = Pattern.compile("^did:indy:(?:(\\w[-\\w]*(?::\\w[-\\w]*)*):)?([1-9A-HJ-NP-Za-km-z]{21,22})$");
 
 	private Map<String, Object> properties;
 
@@ -131,7 +131,7 @@ public class DidIndyDriver implements Driver {
 
 		// parse identifier
 
-		Matcher matcher = DID_SOV_PATTERN.matcher(did.getDidString());
+		Matcher matcher = DID_INDY_PATTERN.matcher(did.getDidString());
 		if (! matcher.matches()) return null;
 
 		String network = matcher.group(1);
