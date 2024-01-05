@@ -36,28 +36,42 @@ public class DidIndyDriver implements Driver {
 	private boolean openParallel;
 	private IndyConnector indyConnector;
 
+	public DidIndyDriver(LibIndyInitializer libIndyInitializer, boolean openParallel, IndyConnector indyConnector) throws IndyConnectionException{
+
+		this.setLibIndyInitializer(libIndyInitializer);
+		this.setOpenParallel(openParallel);
+		this.setIndyConnector(indyConnector);
+
+		this.initializeIndy();
+	}
+
 	public DidIndyDriver(Map<String, Object> properties) throws IndyConnectionException{
 
 		this.setProperties(properties);
 
-		// init
+		this.initializeIndy();
+	}
 
-		if (! this.getLibIndyInitializer().isInitialized()) {
+	public DidIndyDriver() throws IndyConnectionException {
+
+		this(getPropertiesFromEnvironment());
+	}
+
+	private void initializeIndy() throws IndyConnectionException {
+
+		// init libindy
+
+		if (this.getLibIndyInitializer() != null && ! this.getLibIndyInitializer().isInitialized()) {
 			this.getLibIndyInitializer().initializeLibIndy();
 			if (log.isInfoEnabled()) log.info("Successfully initialized libindy.");
 		}
 
 		// open indy connections
 
-		if (! this.getIndyConnector().isOpened()) {
+		if (this.getIndyConnector() != null && ! this.getIndyConnector().isOpened()) {
 			this.getIndyConnector().openIndyConnections(true, false, this.getOpenParallel());
 			if (log.isInfoEnabled()) log.info("Successfully opened Indy connections.");
 		}
-	}
-
-	public DidIndyDriver() throws IndyConnectionException {
-
-		this(getPropertiesFromEnvironment());
 	}
 
 	private static Map<String, Object> getPropertiesFromEnvironment() {
