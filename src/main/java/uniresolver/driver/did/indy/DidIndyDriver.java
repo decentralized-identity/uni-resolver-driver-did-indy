@@ -42,7 +42,7 @@ public class DidIndyDriver implements Driver {
 
 		// init
 
-		if (!this.getLibIndyInitializer().isInitialized()) {
+		if (! this.getLibIndyInitializer().isInitialized()) {
 			this.getLibIndyInitializer().initializeLibIndy();
 			if (log.isInfoEnabled()) log.info("Successfully initialized libindy.");
 		}
@@ -123,10 +123,10 @@ public class DidIndyDriver implements Driver {
 	@Override
 	public ResolveDataModelResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
 
-		// open indy connections
+		// check if Indy connections are open
 
 		if (! this.getIndyConnector().isOpened()) {
-			throw new ResolutionException("Cannot open Indy connections: Indy Connections are not opened");
+			throw new ResolutionException("Indy connections are not opened");
 		}
 
 		// parse identifier
