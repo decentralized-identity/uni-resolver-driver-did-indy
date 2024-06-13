@@ -6,7 +6,7 @@
 	<artifactId>uni-resolver-driver-did-indy</artifactId>
 	<packaging>${packaging.type}</packaging>
 	<name>uni-resolver-driver-did-indy</name>
-	<version>0.10-SNAPSHOT</version>
+	<version>0.11-SNAPSHOT</version>
 
 	<parent>
 		<groupId>decentralized-identity</groupId>
