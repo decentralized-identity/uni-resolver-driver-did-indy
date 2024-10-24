@@ -216,6 +216,18 @@ public class DidIndyDriver implements Driver {
 				throw new ResolutionException("Cannot send GET_ATTR request: " + ex.getMessage(), ex);
 			}
 
+			if (getAttrResponse == null) {
+				try {
+					synchronized (indyConnection) {
+						Pool.setProtocolVersion(indyConnection.getPoolVersion());
+						String getAttrRequest = Ledger.buildGetAttribRequest(indyConnection.getSubmitterDid(), indyDid, "endpoint", null, null).get();
+						getAttrResponse = Ledger.signAndSubmitRequest(indyConnection.getPool(), indyConnection.getWallet(), indyConnection.getSubmitterDid(), getAttrRequest).get();
+					}
+				} catch (IndyException | InterruptedException | ExecutionException ex) {
+					throw new ResolutionException("Cannot send GET_ATTR request: " + ex.getMessage(), ex);
+				}
+			}
+
 			if (log.isInfoEnabled()) log.info("GET_ATTR for " + indyDid + ": " + getAttrResponse);
 		}
 

@@ -55,6 +55,19 @@ public class DidDocAssembler {
 
         if (attribTransactionData != null && "diddocContent".equals(attribTransactionData.getRawKey()) && attribTransactionData.getRawValue() != null) {
             didDocumentContent = attribTransactionData.getRawValue();
+        } else if (attribTransactionData != null && "endpoint".equals(attribTransactionData.getRawKey()) && attribTransactionData.getRawValue() != null && attribTransactionData.getRawValue().containsKey("endpoint")) {
+            didDocumentContent = Map.of(
+                    "@context", List.of("https://identity.foundation/didcomm-messaging/service-endpoint/v1"),
+                    "service", List.of(
+                            Map.of(
+                                    "id", "did:indy:sovrin:123456#did-communication",
+                                    "type", "did-communication",
+                                    "priority", 0,
+                                    "serviceEndpoint", attribTransactionData.getRawValue().get("endpoint"),
+                                    "recipientKeys", List.of("#verkey"),
+                                    "routingKeys", List.of()
+                            )
+                    ));
         } else {
             didDocumentContent = Collections.emptyMap();
         }
