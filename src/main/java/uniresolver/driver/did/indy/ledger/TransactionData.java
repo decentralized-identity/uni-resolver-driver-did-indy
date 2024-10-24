@@ -173,6 +173,17 @@ public class TransactionData {
         }
     }
 
+    public static boolean hasData(String getAttrResponse) {
+        try {
+            Map<String, Object> getTxnResponseMap = objectMapper.readValue(getAttrResponse, Map.class);
+            Object jsonGetAttrResult = getTxnResponseMap == null ? null : getTxnResponseMap.get("result");
+            Object jsonGetAttrResultDataString = !(jsonGetAttrResult instanceof Map) ? null : ((Map) jsonGetAttrResult).get("data");
+            return jsonGetAttrResultDataString != null;
+        } catch (JsonProcessingException ex) {
+            throw new IllegalArgumentException("Cannot parse transaction " + getAttrResponse + ": " + ex.getMessage(), ex);
+        }
+    }
+
     public boolean isNym() {
         return "1".equals(this.getType());
     }

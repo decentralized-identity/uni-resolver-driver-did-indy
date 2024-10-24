@@ -216,7 +216,7 @@ public class DidIndyDriver implements Driver {
 				throw new ResolutionException("Cannot send GET_ATTR request: " + ex.getMessage(), ex);
 			}
 
-			if (getAttrResponse == null) {
+			if (! TransactionData.hasData(getAttrResponse)) {
 				try {
 					synchronized (indyConnection) {
 						Pool.setProtocolVersion(indyConnection.getPoolVersion());
