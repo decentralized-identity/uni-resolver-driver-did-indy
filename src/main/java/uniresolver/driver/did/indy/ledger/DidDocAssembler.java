@@ -60,7 +60,7 @@ public class DidDocAssembler {
                     "@context", List.of("https://identity.foundation/didcomm-messaging/service-endpoint/v1"),
                     "service", List.of(
                             Map.of(
-                                    "id", "did:indy:sovrin:123456#did-communication",
+                                    "id", did + "#did-communication",
                                     "type", "did-communication",
                                     "priority", 0,
                                     "serviceEndpoint", attribTransactionData.getRawValue().get("endpoint"),
