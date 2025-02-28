@@ -16,7 +16,7 @@ on:
 jobs:
 
   docker-release:
-    uses: danubetech/workflows/.github/workflows/docker-release.yml@1.2.0
+    uses: danubetech/workflows/.github/workflows/docker-release.yml@main
     with:
       GLOBAL_IMAGE_NAME: universalresolver/driver-did-indy
       GLOBAL_REPO_NAME: docker.io
