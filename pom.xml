@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>decentralized-identity</groupId>
 		<artifactId>uni-resolver</artifactId>
-		<version>0.15.0</version>
+		<version>0.29.0</version>
 	</parent>
 
 	<scm>
@@ -38,8 +38,8 @@
 		<did-common-java.version>1.11.0</did-common-java.version>
 
 		<io.leonard-base58.version>0.0.2</io.leonard-base58.version>
-		<jcl-over-slf4j.version>2.0.9</jcl-over-slf4j.version>
-		<log4j-slf4j2-impl.version>2.21.0</log4j-slf4j2-impl.version>
+		<jcl-over-slf4j.version>2.0.17</jcl-over-slf4j.version>
+		<log4j-slf4j2-impl.version>2.24.3</log4j-slf4j2-impl.version>
 	</properties>
 
 	<profiles>
@@ -135,11 +135,6 @@
 				<groupId>com.danubetech</groupId>
 				<artifactId>libindy-common-java</artifactId>
 				<version>${libindy-common-java.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>${gson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leonard</groupId>

@@ -6,16 +6,19 @@ import com.danubetech.libindy.IndyConnector;
 import com.danubetech.libindy.LibIndyInitializer;
 import foundation.identity.did.DID;
 import foundation.identity.did.DIDDocument;
+import foundation.identity.did.DIDURL;
 import org.hyperledger.indy.sdk.IndyException;
 import org.hyperledger.indy.sdk.ledger.Ledger;
 import org.hyperledger.indy.sdk.pool.Pool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uniresolver.DereferencingException;
 import uniresolver.ResolutionException;
 import uniresolver.driver.Driver;
 import uniresolver.driver.did.indy.ledger.DidDocAssembler;
 import uniresolver.driver.did.indy.ledger.TransactionData;
-import uniresolver.result.ResolveDataModelResult;
+import uniresolver.result.DereferenceResult;
+import uniresolver.result.ResolveResult;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -135,7 +138,7 @@ public class DidIndyDriver implements Driver {
 	}
 
 	@Override
-	public ResolveDataModelResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
+	public ResolveResult resolve(DID did, Map<String, Object> resolveOptions) throws ResolutionException {
 
 		// check if Indy connections are open
 
@@ -255,16 +258,20 @@ public class DidIndyDriver implements Driver {
 
 		// create RESOLVE RESULT
 
-		ResolveDataModelResult resolveDataModelResult = ResolveDataModelResult.build(null, didDocument, didDocumentMetadata);
+		ResolveResult resolveResult = ResolveResult.build(null, didDocument, didDocumentMetadata);
 
 		// done
 
-		return resolveDataModelResult;
+		return resolveResult;
+	}
+
+	@Override
+	public DereferenceResult dereference(DIDURL didurl, Map<String, Object> map) throws DereferencingException, ResolutionException {
+		throw new RuntimeException("Not implemented");
 	}
 
 	@Override
 	public Map<String, Object> properties() {
-
 		return this.getProperties();
 	}
 
