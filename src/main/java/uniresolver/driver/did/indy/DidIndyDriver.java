@@ -7,6 +7,7 @@ import com.danubetech.libindy.LibIndyInitializer;
 import foundation.identity.did.DID;
 import foundation.identity.did.DIDDocument;
 import foundation.identity.did.DIDURL;
+import foundation.identity.did.representations.Representations;
 import org.hyperledger.indy.sdk.IndyException;
 import org.hyperledger.indy.sdk.ledger.Ledger;
 import org.hyperledger.indy.sdk.pool.Pool;
@@ -259,6 +260,7 @@ public class DidIndyDriver implements Driver {
 		// create RESOLVE RESULT
 
 		ResolveResult resolveResult = ResolveResult.build(null, didDocument, didDocumentMetadata);
+		resolveResult.setContentType(Representations.DEFAULT_MEDIA_TYPE);
 
 		// done
 
