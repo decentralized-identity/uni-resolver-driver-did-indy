@@ -247,7 +247,12 @@ public class DidIndyDriver implements Driver {
 		else
 			didDocument = DidDocAssembler.assembleDIDDocument(did, nymTransactionData, attribTransactionData);
 
-		// create DID DOCUMENT METADATA
+		// DID RESOLUTION METADATA
+
+		Map<String, Object> didResolutionMetadata = new LinkedHashMap<>();
+		didResolutionMetadata.put("contentType", Representations.DEFAULT_MEDIA_TYPE);
+
+		// DID DOCUMENT METADATA
 
 		Map<String, Object> didDocumentMetadata = new LinkedHashMap<> ();
 		if (deactivated) didDocumentMetadata.put("deactivated", deactivated);
@@ -257,9 +262,9 @@ public class DidIndyDriver implements Driver {
 		if (nymTransactionData != null) didDocumentMetadata.put("nymResponse", nymTransactionData.getResponseMap());
 		if (attribTransactionData != null) didDocumentMetadata.put("attribResponse", attribTransactionData.getResponseMap());
 
-		// create RESOLVE RESULT
+		// RESOLVE RESULT
 
-		ResolveResult resolveResult = ResolveResult.build(null, didDocument, didDocumentMetadata);
+		ResolveResult resolveResult = ResolveResult.build(didResolutionMetadata, didDocument, didDocumentMetadata);
 		resolveResult.setContentType(Representations.DEFAULT_MEDIA_TYPE);
 
 		// done
